@@ -1,22 +1,14 @@
 services:
   app:
-    image: ghcr.io/growlf/toolbox:testing  # Make sure this image exists
+    image: my_toolbox_image  # Use local image instead
     stdin_open: true
     tty: true
     command: ["/bin/zsh"]
     restart: unless-stopped
     ports:
-      - "8080:8080"  # Change if needed
+      - "8080:8080"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - portainer_data:/data  # Persistent storage
+      - portainer_data:/data
     networks:
       - toolbox_network
-
-networks:
-  toolbox_network:
-    driver: bridge
-
-volumes:
-  portainer_data:
-    driver: local
