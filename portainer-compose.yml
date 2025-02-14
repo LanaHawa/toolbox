@@ -1,12 +1,12 @@
 services:
   app:
-    image: my_toolbox_image  # Use local image instead
+    image: portainer/portainer-ce  # Use local image instead
     stdin_open: true
     tty: true
     command: ["/bin/zsh"]
     restart: unless-stopped
     ports:
-      - "8080:8080"
+      - "8081:8081"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
