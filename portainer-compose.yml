@@ -1,16 +1,4 @@
 version: '3.8'
-services:
-
-  # Building and testing environment
-  app:
-    image: ghcr.io/growlf/toolbox:testing
-    stdin_open: true
-    tty: true
-    command: ["/bin/zsh"]
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    network_mode: "host"
-version: '3.8'
 
 services:
   app:
@@ -18,9 +6,9 @@ services:
     stdin_open: true
     tty: true
     command: ["/bin/zsh"]
-    restart: unless-stopped  # Ensures it restarts on failures
+    restart: unless-stopped
     ports:
-      - "8080:8080"  # Change based on your application needs
+      - "8080:8080"  # Adjust if needed
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data  # Persistent data storage
@@ -29,7 +17,7 @@ services:
 
 networks:
   toolbox_network:
-    driver: bridge  # Portainer prefers explicit network settings
+    driver: bridge
 
 volumes:
   portainer_data:
